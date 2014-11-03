@@ -1,0 +1,16 @@
+= make_path(@page) if @page.parent
+
+%p
+	%h2= @page.title
+	
+%p
+	= markdown @page.content
+
+= link_to 'Add Subpage', new_page_path(:parent_id => @page.id)
+|
+= link_to 'Edit', edit_page_path(@page)
+|
+= link_to 'Destroy', page_path(@page), method: :delete, data: { confirm: 'Are you sure?' }
+|
+= link_to 'Back to All', root_path
+

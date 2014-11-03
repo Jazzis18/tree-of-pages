@@ -1,0 +1,9 @@
+%h1 Tree of Pages
+%hr
+
+= link_to 'Add Page', new_page_path
+
+%p
+	%ul.tree-of-pages
+		- @pages.roots.each do |page|
+			= display_tree(page)

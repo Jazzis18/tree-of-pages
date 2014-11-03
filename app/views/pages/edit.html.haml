@@ -1,0 +1,10 @@
+%h1 Updating Page
+= make_path @page if @page.parent
+= form_for :page, url: page_path(@page), method: :patch do |f|
+	
+	= render partial: 'form', locals: { f: f }
+	
+	%p
+		= f.submit 'Update Page'
+		
+= link_to 'Back to All', root_path

@@ -1,0 +1,24 @@
+- if @page.errors.any?
+	%h2
+		= pluralize(@page.errors.count, 'error') 
+		prohibited this post from being saved:
+		
+	%ul
+		- @page.errors.full_messages.each do |msg|
+			%li= msg
+
+%p
+	= f.label 'Name'
+	%br
+	= f.text_field :name
+
+%p	
+	= f.label 'Title'
+	%br
+	= f.text_field :title
+	
+%p	
+	= f.label 'Content'
+	%br
+	= f.text_area :content, size: '80x12'
+	
