@@ -1,7 +1,6 @@
 %h1 Adding Page
 = make_path @page if @page.parent
 = form_for :page, url: root_path do |f|
-	= f.hidden_field :section, :value => make_urlpath(@page)
 	= f.hidden_field :parent_id
 	= render partial: 'form', locals: { f: f }
 	

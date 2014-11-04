@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   def create
   	@page = Page.new(page_params)
   	if @page.save
-  		redirect_to @page
+  		redirect_to nested_pages_path
   	else
   		render 'new'
   	end

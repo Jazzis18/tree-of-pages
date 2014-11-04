@@ -6,7 +6,7 @@
 %p
 	= markdown @page.content
 
-= link_to 'Add Subpage', new_page_path(:parent_id => @page.id)
+= link_to 'Add Subpage', new_nested_pages_path(:parent_id => @page.id)
 |
 = link_to 'Edit', edit_nested_pages_path(@page)
 |
