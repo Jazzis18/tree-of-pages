@@ -1,6 +1,7 @@
 module PagesHelper
+	# генерация дерева страниц и подстраниц с помощью маркированного списка
 	def display_tree(page)
-		tree = "<li>#{link_to page.name, page_path(page)}</li>"
+		tree = "<li>#{link_to page.name, nested_pages_path(page)}</li>"
 		if page.has_children?
 			tree += "<ul class=\"tree-of-pages\">"
 			page.children.each do |sub_page|
@@ -11,13 +12,10 @@ module PagesHelper
 		tree.html_safe
 	end
 
+	# создание пути из ссылок вида Page 1 > Page 1.1 > ...
 	def make_path(page)
 		page.ancestors.map do |parent|
-			link_to parent[:name], page_path(parent)
+			link_to parent.name, nested_pages_path(parent)
 		end.join(' > ').html_safe
-	end
-	
-	def make_urlpath(page)
-		page.ancestors.pluck(:slug).join('/')
 	end
 end
