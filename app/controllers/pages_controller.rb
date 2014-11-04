@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   
   def update
   	if @page.update(page_params)
-		  redirect_to @page
+		  redirect_to nested_pages_path
 		else
 		  render 'edit'
 		end
@@ -43,7 +43,7 @@ class PagesController < ApplicationController
 private
   
   def find_page
-  	@page = Page.find_by_slug!(params[:id])
+  	@page = Page.find_by_slug!(params[:slug])
   end
   
   def page_params
