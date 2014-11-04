@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   def create
   	@page = Page.new(page_params)
   	if @page.save
-  		redirect_to nested_pages_path
+  		redirect_to nested_pages_path(@page)
   	else
   		render 'new'
   	end
@@ -37,7 +37,7 @@ class PagesController < ApplicationController
   
   def destroy
   	@page.destroy
-  	redirect_to pages_path
+  	redirect_to root_path
   end
   
 private

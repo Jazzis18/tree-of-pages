@@ -2,6 +2,7 @@ class Page < ActiveRecord::Base
 	has_ancestry
 	validates :slug, :name, uniqueness: true, presence: true
 	before_validation :generate_slug
+	before_update :generate_slug
 	
 	def to_param
 		slug
