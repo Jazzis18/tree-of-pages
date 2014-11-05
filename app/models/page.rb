@@ -10,10 +10,9 @@ class Page < ActiveRecord::Base
 	def generate_slug
 		name_as_slug = Russian.translit(name).parameterize
 		if parent.present?
-		  self.slug = [parent.slug, (slug.blank? ? name_as_slug : slug.split('/').last)].join('/')
+		  self.slug = [parent.slug, name_as_slug].join('/')
 		else
 		  self.slug = name_as_slug if slug.blank?
 		end
 	end
-	
 end
