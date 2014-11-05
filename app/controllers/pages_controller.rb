@@ -30,6 +30,7 @@ class PagesController < ApplicationController
   def update
   	if @page.update(page_params)
 		  redirect_to nested_pages_path(@page)
+		  update_children_slugs(@page)
 		else
 		  render 'edit'
 		end
@@ -42,11 +43,22 @@ class PagesController < ApplicationController
   
 private
   
+  # если у страницы есть подстраницы, то обновляем их slug-и
+  def update_children_slugs(page)
+    if page.has_children?
+      page.children.each do |child|
+        child.slug = [child.parent.slug, child.slug.split('/').last].join('/')
+        child.save!
+        update_children_slugs(child)
+      end
+    end
+  end
+  
   def find_page
   	@page = Page.find_by_slug!(params[:slug])
   end
   
   def page_params
-  	params.require(:page).permit(:name, :title, :content, :parent_id, :section)
+  	params.require(:page).permit(:name, :title, :content, :parent_id)
   end
 end

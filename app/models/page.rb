@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
 		if parent.present?
 		  self.slug = [parent.slug, name_as_slug].join('/')
 		else
-		  self.slug = name_as_slug if slug.blank?
+		  self.slug = name_as_slug
 		end
 	end
 end
